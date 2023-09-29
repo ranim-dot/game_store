@@ -14,7 +14,17 @@ public class User {
     private String name;
     private String lastname;
     private String email;
+
+    private String notes;
     private String pass;
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     public Integer getId() {
         return id;
