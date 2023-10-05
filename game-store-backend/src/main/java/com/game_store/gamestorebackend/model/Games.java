@@ -15,7 +15,7 @@ public class Games {
 
         private String name;
         private String desc;
-        private Date release_data;
+        private String release_data;
         private Integer quantity;
         private Boolean available;
 
@@ -43,11 +43,11 @@ public class Games {
         this.desc = desc;
     }
 
-    public Date getRelease_data() {
+    public String getRelease_data() {
         return release_data;
     }
 
-    public void setRelease_data(Date release_data) {
+    public void setRelease_data(String release_data) {
         this.release_data = release_data;
     }
 
