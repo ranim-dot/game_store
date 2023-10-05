@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import chart from "../images/chart.png";
 import game from "../images/game.png";
@@ -8,11 +8,7 @@ import logo from "../images/logo.png";
 
 const SideBar = () => {
   const [selected, setSelected] = useState(null);
-
-  const usePathname = () => {
-    const location = useLocation();
-    return location.pathname;
-  };
+  const location = useLocation();
 
   const sideInfo = [
     { info_name: "Stats", imgUrl: chart, alt: "1", path: "" },
@@ -21,9 +17,19 @@ const SideBar = () => {
     { info_name: "Repports", imgUrl: repports, alt: "4", path: "" },
   ];
 
-  const setSelection = (name) => {
-    setSelected(name);
-  };
+  useEffect(() => {
+    // Set selected based on the current pathname
+    const pathname = location.pathname.replace(/^\//, '');
+
+    const matchingInfo = sideInfo.find(info => info.path === pathname);
+
+    if (matchingInfo) {
+      setSelected(matchingInfo.info_name);
+    } else {
+      // Reset selection if no match is found
+      setSelected(null);
+    }
+  }, [location.pathname, sideInfo]);
 
   return (
     <div className="sidebar_bg  w-[17%] h-screen flex flex-col">
@@ -41,7 +47,7 @@ const SideBar = () => {
                 ? "bg-zinc-700"
                 : "hover:bg-teal-900"
             } flex gap-5 px-4 my-8 ml-4 py-3 w-[85%] rounded-lg`}
-            onClick={() => setSelection(info.info_name)}
+            onClick={() => setSelected(info.info_name)}
           >
             <img className="w-6 h-6" src={info.imgUrl} alt={info.alt} />
             <h1 className="logo_name text-md font-semibold font-satoshi ">

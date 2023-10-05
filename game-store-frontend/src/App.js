@@ -6,6 +6,8 @@ import Stats from './pages/Stats'
 import Games from './pages/Games'
 import Workers from './pages/Workers'
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import ViewGame from './pages/ViewGame';
+import EditGame from './pages/EditGame';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route exact path='/' element={<Stats />} />
         <Route exact path='/games' element={<Games />} />
         <Route exact path='/workers' element={<Workers />} />
+        <Route exact path='/viewgame/:id' element={<ViewGame />} />
+        <Route exact path='/editgame/:id' element={<EditGame />}  />
       </Routes>
       </Router>
       
